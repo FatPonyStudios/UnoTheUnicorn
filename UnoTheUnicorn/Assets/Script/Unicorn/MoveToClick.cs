@@ -7,12 +7,14 @@ public enum SpriteState
     Idle
 }
 
+
 public class MoveToClick : MonoBehaviour 
 {
 	public delegate void ClickDelegate (Vector3 position);
-    public static ClickDelegate UnicornPosition;
+    public ClickDelegate UnicornPosition;
+	public ClickCatcher clickCatcher;  //*Ej static. Kan stoppa in olika versioner av ClickCatcher och det ändras automatiskt. Exempel fiender.
     
-    float[] spriteOffset;
+	float[] spriteOffset;
     int currentSpriteFrame = 0;
 
     Vector2 targetCoordinate;
@@ -20,7 +22,7 @@ public class MoveToClick : MonoBehaviour
     
     void Start () 
     {
-        ClickCatcher.MouseClickEvent += SetTarget;
+        clickCatcher.MouseClickEvent += SetTarget;//*
         targetCoordinate = transform.position;
         spriteOffset = new float[6]{0.0f, 0.166666667f, 0.333333333f, 0.5f, 0.666666667f, 0.833333333f};
         state = SpriteState.Idle;
@@ -38,7 +40,8 @@ public class MoveToClick : MonoBehaviour
 
     void SetTarget(Vector2 target)
     {
-        targetCoordinate = Camera.main.ScreenToWorldPoint(target);
+		SendMessage ("OnUnoMoved", transform.position, SendMessageOptions.RequireReceiver); //Exempel AK
+		targetCoordinate = target;
         //Debug.Log("=====================================================" + targetCoordinate);
         //Debug.Log(transform.position);
     }
@@ -49,10 +52,10 @@ public class MoveToClick : MonoBehaviour
         bool TargetReached = false;
 
         Vector2 newPosition = transform.position;
-
-        if (newPosition.x - 1 < targetCoordinate.x && newPosition.x + 1 > targetCoordinate.x && newPosition.y - 1 < targetCoordinate.y && newPosition.y + 1 > targetCoordinate.y)
+		const float minimalPositionDiff = 0.1f; //Ej siffror i koden, samla under ett namn. Lättare att bara ändra på ett ställe. Mindre diff.
+        if (newPosition.x - minimalPositionDiff < targetCoordinate.x && newPosition.x + minimalPositionDiff > targetCoordinate.x && newPosition.y - minimalPositionDiff < targetCoordinate.y && newPosition.y + minimalPositionDiff > targetCoordinate.y)
         {
-            TargetReached = true;
+          	TargetReached = true;
             state = SpriteState.Idle;
         }
 
