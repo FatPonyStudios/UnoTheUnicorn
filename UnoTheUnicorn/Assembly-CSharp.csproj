@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Script\ClickCatcher.cs" />
      <Compile Include="Assets\Script\Unicorn\MoveToClick.cs" />
+     <Compile Include="Assets\Script\Unicorn\Test.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>
