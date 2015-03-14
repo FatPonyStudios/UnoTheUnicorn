@@ -100,6 +100,6 @@ public class MoveToClick : MonoBehaviour
             currentSpriteFrame = 0;
         }
 
-        renderer.material.SetTextureOffset("_MainTex", new Vector2(spriteOffset[currentSpriteFrame], 0));
+        GetComponent<Renderer>().material.SetTextureOffset("_MainTex", new Vector2(spriteOffset[currentSpriteFrame], 0));
     }
 }
