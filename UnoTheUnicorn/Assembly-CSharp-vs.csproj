@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scenes\Test.cs" />
      <Compile Include="Assets\Script\ClickCatcher.cs" />
      <Compile Include="Assets\Script\Unicorn\MoveToClick.cs" />
  <Reference Include="UnityEngine.UI">
