@@ -2,28 +2,57 @@
 using System.Collections;
 
 public class ClickOnObject : MonoBehaviour {
-	public GameObject ThoughtBubble;
+	public Renderer ThoughtBubble;
+	float bubbleShownAtTime;
 	// Use this for initialization
+	
 	void Start () {
-		ThoughtBubble.GetComponent<Renderer>().enabled = false;
+		ShowBubble(false);
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		CheckIfWeShouldCloseBubble();
 	}
+	
+	void CheckIfWeShouldCloseBubble()
+	{
+		if (IsBubbleDisplayed() && TimeToHideBubble())
+		{
+			ShowBubble(false);
+		}
+	}
+	
 	void OnMouseDown()
 	{
 		Debug.Log("Hello");
-		ThoughtBubble.GetComponent<Renderer>().enabled = true;
-
-		StartCoroutine("WaitThreeSeconds");
+		ShowBubble(true);
+		
 	}
-
-	IEnumerator WaitThreeSeconds()
+	
+	bool IsBubbleDisplayed()
 	{
-		yield return new WaitForSeconds(3);
-		Debug.Log("Waiting");
-		ThoughtBubble.GetComponent<Renderer>().enabled = false;
+		return ThoughtBubble.enabled;
 	}
+	
+	bool TimeToHideBubble()
+	{
+		const float secondsBubbleIsShown = 3.0f;
+		return Time.time >= bubbleShownAtTime + secondsBubbleIsShown;
+	}
+	
+	void ShowBubble(bool on)
+	{
+		if (on) {
+			bubbleShownAtTime = Time.time;
+		}
+		ThoughtBubble.enabled = on;
+	}
+	
+	
+	
+	
+	
+	
 }
