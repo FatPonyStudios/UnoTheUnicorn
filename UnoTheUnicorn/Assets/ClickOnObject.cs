@@ -16,6 +16,14 @@ public class ClickOnObject : MonoBehaviour {
 	{
 		Debug.Log("Hello");
 		ThoughtBubble.GetComponent<Renderer>().enabled = true;
-		}
 
+		StartCoroutine("WaitThreeSeconds");
+	}
+
+	IEnumerator WaitThreeSeconds()
+	{
+		yield return new WaitForSeconds(3);
+		Debug.Log("Waiting");
+		ThoughtBubble.GetComponent<Renderer>().enabled = false;
+	}
 }
