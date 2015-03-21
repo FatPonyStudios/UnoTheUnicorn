@@ -1,0 +1,12 @@
+C:\Users\Hanna\Documents\UnoTheUnicorn\UnoTheUnicorn\Temp\bin\Debug\Assembly-CSharp.dll
+C:\Users\Hanna\Documents\UnoTheUnicorn\UnoTheUnicorn\Temp\bin\Debug\Assembly-CSharp.pdb
+C:\Users\Hanna\Documents\UnoTheUnicorn\UnoTheUnicorn\Temp\bin\Debug\UnityEditor.dll
+C:\Users\Hanna\Documents\UnoTheUnicorn\UnoTheUnicorn\Temp\bin\Debug\UnityEngine.dll
+C:\Users\Hanna\Documents\UnoTheUnicorn\UnoTheUnicorn\Temp\bin\Debug\UnityEngine.UI.dll
+C:\Users\Hanna\Documents\UnoTheUnicorn\UnoTheUnicorn\Temp\bin\Debug\Mono.Cecil.dll
+C:\Users\Hanna\Documents\UnoTheUnicorn\UnoTheUnicorn\Temp\bin\Debug\Unity.SerializationLogic.dll
+C:\Users\Hanna\Documents\UnoTheUnicorn\UnoTheUnicorn\Temp\bin\Debug\Unity.DataContract.dll
+C:\Users\Hanna\Documents\UnoTheUnicorn\UnoTheUnicorn\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+C:\Users\Hanna\Documents\UnoTheUnicorn\UnoTheUnicorn\Temp\bin\Debug\Unity.CecilTools.dll
+C:\Users\Hanna\Documents\UnoTheUnicorn\UnoTheUnicorn\obj\Debug\Assembly-CSharp.dll
+C:\Users\Hanna\Documents\UnoTheUnicorn\UnoTheUnicorn\obj\Debug\Assembly-CSharp.pdb

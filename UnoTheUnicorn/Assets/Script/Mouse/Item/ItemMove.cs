@@ -9,6 +9,9 @@ public class ItemMove : MonoBehaviour {
     private Vector3 originalposition;
     private bool areaReached;
     private bool drag;
+    public GameObject testOfItem;
+    private Collider collie;
+    
 
 	// Use this for initialization
 	void Start () {
@@ -41,11 +44,25 @@ public class ItemMove : MonoBehaviour {
         gameObject.transform.position = originalposition;
     }
 
-    void OnTriggerEnter(Collider mytrigger)
+
+    GameObject SetItem()
     {
-        if (mytrigger.gameObject.name == "TestItem2")
-        {
-            Debug.Log("working!");
-        }
+        testOfItem = GameObject.Find("TestItem2");
+        testOfItem.transform.parent = null;
+        return testOfItem;
     }
-}
+//    void OnTriggerEnter(Collider mytrigger)
+//    {
+//        if (mytrigger.gameObject.name == "TestItem2")
+//        {
+//            SetItem().transform.parent = gameObject.transform;
+        //}
+    void OnColliderEnter(Collider c)
+    {
+        if (c.gameObject.name == "TestItem2")
+
+        { SetItem().transform.parent = gameObject.transform; }
+    }
+    }
+    
+

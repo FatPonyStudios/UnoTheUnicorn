@@ -3,45 +3,53 @@ using System.Collections;
 
 public class test2 : MonoBehaviour {
 
-	// Use this for initialization
+	 //Use this for initialization
 
-    //private Vector3 offset;
-    //private Vector3 screenPoint;
-    //private Vector3 originalposition;
-    //private bool areaReached;
-    //private bool drag;
+    private Vector3 offset;
+    private Vector3 screenPoint;
+    private Vector3 originalposition;
+    private bool areaReached;
+    private bool drag;
 
-    // Use this for initialization
-    //void Start()
-    //{
+     //Use this for initialization
+    
+         void Start()
+    {
 
-    //}
+    }
 
-    // Update is called once per frame
-    //void Update()
-    //{
+     //Update is called once per frame
+    void Update()
+    {
 
-    //}
-    //void OnMouseDown()
-    //{
-    //    originalposition = gameObject.transform.position;
-    //    screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
-    //    offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+    }
+    void OnMouseDown()
+    {
+        originalposition = gameObject.transform.position;
+        screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+        offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
 
-    //}
+    }
 
-    //void OnMouseDrag()
-    //{
-    //    Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
+    void OnMouseDrag()
+    {
+        Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
 
-    //    Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
-    //    transform.position = curPosition;
+        Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
+        transform.position = curPosition;
 
-    //}
-    //void OnMouseUp()
-    //{
+    }
+    void OnMouseUp()
+    {
 
-    //    gameObject.transform.position = originalposition;
-    //}
+        gameObject.transform.position = originalposition;
+    }
+
+    void OnColliderEnter(Collider c)
+    {
+        if (c.gameObject.name == "TestItem2")
+
+        { c.transform.parent = gameObject.transform; }
+    }
 }
 
