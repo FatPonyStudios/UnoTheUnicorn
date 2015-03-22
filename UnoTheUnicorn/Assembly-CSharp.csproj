@@ -46,6 +46,11 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Script\Inventory\Clicktest.cs" />
+     <Compile Include="Assets\Script\Inventory\Droptest.cs" />
+     <Compile Include="Assets\Script\Inventory\Inventory.cs" />
+     <Compile Include="Assets\Script\Inventory\Item.cs" />
+     <Compile Include="Assets\Script\Inventory\ItemDataBase.cs" />
      <Compile Include="Assets\Script\Mouse\ClickCatcher.cs" />
      <Compile Include="Assets\Script\Mouse\ClickOnObject.cs" />
      <Compile Include="Assets\Script\Mouse\Item\ItemMove.cs" />
