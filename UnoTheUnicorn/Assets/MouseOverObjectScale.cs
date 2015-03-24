@@ -6,12 +6,12 @@ public class MouseOverObjectScale : MonoBehaviour {
 	public Vector3 scaleVector;
 	// Use this for initialization
 	void Start () {
-	
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
 	void OnMouseEnter(){
 		Scale(true);
@@ -21,17 +21,30 @@ public class MouseOverObjectScale : MonoBehaviour {
 	}
 	void Scale(bool on)
 	{
+		float direction;
+		
 		if(on)
 		{
+			direction = 1.0f;
 			Debug.Log("Enter");
-			transform.localScale += new Vector3(0.5f,0.5f,0.5f);
-
 		}
 		else
 		{
+			direction = -1.0f;
 			Debug.Log("Exit");
-			transform.localScale -= new Vector3(0.5f,0.5f,0.5f);
-			
 		}
-}
+		
+		const float amount = 0.5f; 
+		ScalingObject(amount * direction);
+	}
+	
+	void ScalingObject(float size)
+	{
+		transform.localScale += CreateVector(size);
+	}
+	
+	Vector3 CreateVector(float size)
+	{
+		return new Vector3(size,size,size);
+	}
 }
