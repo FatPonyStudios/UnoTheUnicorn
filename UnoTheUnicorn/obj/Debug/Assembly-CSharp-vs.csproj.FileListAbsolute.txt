@@ -22,3 +22,4 @@ C:\Users\user\Documents\UnoTheUnicorn\UnoTheUnicorn\Temp\bin\Debug\ICSharpCode.N
 C:\Users\user\Documents\UnoTheUnicorn\UnoTheUnicorn\Temp\bin\Debug\Unity.CecilTools.dll
 C:\Users\user\Documents\UnoTheUnicorn\UnoTheUnicorn\obj\Debug\Assembly-CSharp.dll
 C:\Users\user\Documents\UnoTheUnicorn\UnoTheUnicorn\obj\Debug\Assembly-CSharp.pdb
+C:\Users\user\Documents\UnoTheUnicorn\UnoTheUnicorn\obj\Debug\Assembly-CSharp-vs.csprojResolveAssemblyReference.cache
