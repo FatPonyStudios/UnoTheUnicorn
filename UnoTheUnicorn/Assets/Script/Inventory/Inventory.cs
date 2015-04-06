@@ -20,11 +20,7 @@ public class Inventory : MonoBehaviour
 			inventory.Add(new Item());
 		}
 		database = GameObject.FindGameObjectWithTag("ItemDB").GetComponent<ItemDataBase>();
-		AddItem(0);
-		AddItem(1);
-		AddItem(2);
-		
-		
+
 		print(InventoryContains(1)); // check if inventory slot (X) is empty or not
 		print(InventoryContains(3));
 	}

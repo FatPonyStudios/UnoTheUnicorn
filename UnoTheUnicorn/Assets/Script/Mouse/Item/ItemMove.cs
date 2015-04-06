@@ -40,29 +40,61 @@ public class ItemMove : MonoBehaviour {
     }
     void OnMouseUp()
     {
-
-        gameObject.transform.position = originalposition;
+		if (!PutItemInRightPosition ()) 
+		{
+			gameObject.transform.position = originalposition;
+		}
     }
 
 
-    GameObject SetItem()
-    {
-        testOfItem = GameObject.Find("TestItem2");
-        testOfItem.transform.parent = null;
-        return testOfItem;
-    }
-//    void OnTriggerEnter(Collider mytrigger)
-//    {
-//        if (mytrigger.gameObject.name == "TestItem2")
-//        {
-//            SetItem().transform.parent = gameObject.transform;
-        //}
-    void OnColliderEnter(Collider c)
-    {
-        if (c.gameObject.name == "TestItem2")
+	GameObject SetItem()
+	{
+		testOfItem = GameObject.Find("TestItem2");
+		testOfItem.transform.parent = null;
+		return testOfItem;
+	}
+	//    void OnTriggerEnter(Collider mytrigger)
+	//    {
+	//        if (mytrigger.gameObject.name == "TestItem2")
+	//        {
+	//            SetItem().transform.parent = gameObject.transform;
+	//}
+	void OnColliderEnter(Collider c)
+	{
+		if (c.gameObject.name == "TestItem2")
+			
+		{ SetItem().transform.parent = gameObject.transform; }
+	}
+	
+	bool PutItemInRightPosition()
+	{
+		
+		var posTest1 = FindObjectsOfType<BridgePartEmpty>();
+		foreach (var emptyPos in posTest1)
+		{
+			if (emptyPos.bridgePartName == gameObject.name)
+			{
+				if(ItemNearToRightPositionCheck(emptyPos.transform.position))
+				{
+					transform.position = emptyPos.transform.position;
+					return true;
+				}
+			}
+		}
+	
+		return false;
+	}
+	bool ItemNearToRightPositionCheck(Vector3 targetCoordinate)
+	{
+		const float minimalPositionDiff = 1.0f; 
+		var distanceLeft = targetCoordinate - transform.position;
 
-        { SetItem().transform.parent = gameObject.transform; }
-    }
-    }
-    
+		if(distanceLeft.magnitude < minimalPositionDiff)
+		{
+			return true;
+		}
+		return false;
+	}
 
+
+}
