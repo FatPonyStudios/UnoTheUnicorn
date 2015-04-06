@@ -34,7 +34,7 @@ public class Inventory : MonoBehaviour
 	
 	void Update()
 	{
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetButtonDown("Inventory"))
         {
             Debug.Log("testing");
             ShowInventory = !ShowInventory;

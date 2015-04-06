@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public enum SpriteState
 {
     Moving,
@@ -13,7 +14,9 @@ public class MoveToClick : MonoBehaviour
 	public delegate void ClickDelegate (Vector3 position);
     public ClickDelegate UnicornPosition;
 	public ClickCatcher clickCatcher;  //*Ej static. Kan stoppa in olika versioner av ClickCatcher och det ändras automatiskt. Exempel fiender.
-    
+	public float velocityNear = 1.0f; 
+	public float velocityFar = 5.0f;
+	public float positionNear = 1.5f;
 	float[] spriteOffset;
     int currentSpriteFrame = 0;
 
@@ -51,40 +54,40 @@ public class MoveToClick : MonoBehaviour
         
         bool TargetReached = false;
 
-        Vector2 newPosition = transform.position;
+        Vector2 currentPosition = transform.position;
+		var distanceLeft = targetCoordinate - currentPosition;
 		const float minimalPositionDiff = 0.1f; //Ej siffror i koden, samla under ett namn. Lättare att bara ändra på ett ställe. Mindre diff.
-        if (newPosition.x - minimalPositionDiff < targetCoordinate.x && newPosition.x + minimalPositionDiff > targetCoordinate.x && newPosition.y - minimalPositionDiff < targetCoordinate.y && newPosition.y + minimalPositionDiff > targetCoordinate.y)
+
+
+		if(distanceLeft.magnitude < minimalPositionDiff)
         {
           	TargetReached = true;
             state = SpriteState.Idle;
         }
-
+		
         if (!TargetReached)
         {
             state = SpriteState.Moving;
-            if (targetCoordinate.x < transform.position.x)
-            {
-                newPosition.x -= 0.1f;
-            }
+			float velocity;
+			if (distanceLeft.magnitude < positionNear)
+			{
+				velocity = velocityNear;
+			}
+			else
+			{
+				velocity = velocityFar;
+			}
+			MovementHandler(velocity);
+        }
 
-            if (targetCoordinate.x > transform.position.x)
-            {
-                newPosition.x += 0.1f;
-            }
-
-            if (targetCoordinate.y < transform.position.y)
-            {
-                newPosition.y -= 0.1f;
-            }
-
-            if (targetCoordinate.y > transform.position.y)
-            {
-                newPosition.y += 0.1f;
-            }
-
-            transform.position = newPosition;
-        }   
     }
+	void MovementHandler (float velocity)
+	{
+		Vector2 currentPosition = transform.position;
+		var distanceLeft = targetCoordinate - currentPosition;
+		currentPosition = currentPosition + distanceLeft.normalized * velocity * Time.deltaTime;
+		transform.position = currentPosition;
+	}
 
     void AnimateUnicorn()
     {
