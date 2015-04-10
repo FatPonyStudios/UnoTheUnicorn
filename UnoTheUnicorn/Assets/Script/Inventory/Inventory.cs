@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 public class Inventory : MonoBehaviour 
 {
+    public GameObject Item1;
+    public GameObject Item2;
 	public int slotsX, slotsY;
 	public List<Item> inventory = new List<Item>();
 	public List<Item> slots = new List<Item>();
@@ -35,12 +37,30 @@ public class Inventory : MonoBehaviour
             Debug.Log("testing");
             ShowInventory = !ShowInventory;
         }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            Instantiate(GetItem(DraggedItem.itemID),transform.position, transform.rotation);
+        
+        }
     }
 
-    void OnMouseDown()
+  GameObject GetItem(int ID)
     {
-       
+        if (ID == 1)
+        {
+            return Item1;
+        }
+
+        else if (ID == 2)
+        {
+            return Item2;
+        }
+        else
+            return null;
     }
+
+
 
 	void OnGUI ()
 	{

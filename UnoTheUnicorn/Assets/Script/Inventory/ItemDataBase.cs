@@ -8,7 +8,7 @@ public class ItemDataBase : MonoBehaviour  // The database containing all the it
 	
 	void Start()  // adding some items to the cause. 
 	{
-		// items.Add(new Item("Carrot", 0, Item.ItemType.Key));
+		// items.Add(new Item("Scissor", 1, Item.ItemType.Key));
 		// items.Add(new Item("Stone", 1, Item.ItemType.Key));
 		// items.Add(new Item("Gurka", 2, Item.ItemType.Prop));	
 	}
