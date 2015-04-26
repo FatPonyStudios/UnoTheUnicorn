@@ -26,16 +26,16 @@ public class ItemMove : MonoBehaviour {
     {
         originalposition = gameObject.transform.position;
         screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
-        offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+
+        offset = originalposition - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
 
     }
 
     void OnMouseDrag()
     {
-        Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
-
-        Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
-        transform.position = curPosition;
+        Vector3 screenPointForMouse = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(screenPointForMouse) + offset;
+        transform.position = mousePosition;
 
     }
     void OnMouseUp()
@@ -44,39 +44,34 @@ public class ItemMove : MonoBehaviour {
 		{
 			gameObject.transform.position = originalposition;
 		}
-    }
+    
 
 
-	GameObject SetItem()
-	{
-		testOfItem = GameObject.Find("TestItem2");
-		testOfItem.transform.parent = null;
-		return testOfItem;
+    //GameObject SetItem()
+    //{
+    //    testOfItem = GameObject.Find("TestItem2");
+    //    testOfItem.transform.parent = null;
+    //    return testOfItem;
 	}
-	//    void OnTriggerEnter(Collider mytrigger)
-	//    {
-	//        if (mytrigger.gameObject.name == "TestItem2")
-	//        {
-	//            SetItem().transform.parent = gameObject.transform;
-	//}
-	void OnColliderEnter(Collider c)
-	{
-		if (c.gameObject.name == "TestItem2")
+	
+    //void OnColliderEnter(Collider c)
+    //{
+    //    if (c.gameObject.name == "TestItem2")
 			
-		{ SetItem().transform.parent = gameObject.transform; }
-	}
+    //    { SetItem().transform.parent = gameObject.transform; }
+//}
 	
 	bool PutItemInRightPosition()
 	{
 		
-		var posTest1 = FindObjectsOfType<BridgePartEmpty>();
-		foreach (var emptyPos in posTest1)
+		var findEmptyObject = FindObjectsOfType<BridgePartEmpty>();
+		foreach (var emptyObjectPosition in findEmptyObject)
 		{
-			if (emptyPos.bridgePartName == gameObject.name)
+			if (emptyObjectPosition.bridgePartName == gameObject.name)
 			{
-				if(ItemNearToRightPositionCheck(emptyPos.transform.position))
+				if(CheckIsItemNearToRightPosition(emptyObjectPosition.transform.position)) //här används samma två gg, ska den göras till en variabel?
 				{
-					transform.position = emptyPos.transform.position;
+					transform.position = emptyObjectPosition.transform.position;
 					return true;
 				}
 			}
@@ -84,7 +79,7 @@ public class ItemMove : MonoBehaviour {
 	
 		return false;
 	}
-	bool ItemNearToRightPositionCheck(Vector3 targetCoordinate)
+	bool CheckIsItemNearToRightPosition(Vector3 targetCoordinate)
 	{
 		const float minimalPositionDiff = 1.0f; 
 		var distanceLeft = targetCoordinate - transform.position;
