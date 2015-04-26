@@ -19,7 +19,6 @@ public class MoveToClick : MonoBehaviour
 	public float positionNear = 1.5f;
 	float[] spriteOffset;
     int currentSpriteFrame = 0;
-    public bool allowedToMove = true;
 
     Vector2 targetCoordinate;
     public SpriteState state;
@@ -52,36 +51,35 @@ public class MoveToClick : MonoBehaviour
 
     void MoveUnicorn()
     {
-        if (allowedToMove)
+        
+        bool TargetReached = false;
+
+        Vector2 currentPosition = transform.position;
+		var distanceLeft = targetCoordinate - currentPosition;
+		const float minimalPositionDiff = 0.1f; //Ej siffror i koden, samla under ett namn. Lättare att bara ändra på ett ställe. Mindre diff.
+
+
+		if(distanceLeft.magnitude < minimalPositionDiff)
         {
-            bool TargetReached = false;
-
-            Vector2 currentPosition = transform.position;
-            var distanceLeft = targetCoordinate - currentPosition;
-            const float minimalPositionDiff = 0.1f; //Ej siffror i koden, samla under ett namn. Lättare att bara ändra på ett ställe. Mindre diff.
-
-
-            if (distanceLeft.magnitude < minimalPositionDiff)
-            {
-                TargetReached = true;
-                state = SpriteState.Idle;
-            }
-
-            if (!TargetReached)
-            {
-                state = SpriteState.Moving;
-                float velocity;
-                if (distanceLeft.magnitude < positionNear)
-                {
-                    velocity = velocityNear;
-                }
-                else
-                {
-                    velocity = velocityFar;
-                }
-                MovementHandler(velocity);
-            }
+          	TargetReached = true;
+            state = SpriteState.Idle;
         }
+		
+        if (!TargetReached)
+        {
+            state = SpriteState.Moving;
+			float velocity;
+			if (distanceLeft.magnitude < positionNear)
+			{
+				velocity = velocityNear;
+			}
+			else
+			{
+				velocity = velocityFar;
+			}
+			MovementHandler(velocity);
+        }
+
     }
 	void MovementHandler (float velocity)
 	{
