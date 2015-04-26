@@ -4,6 +4,8 @@ using System.Collections;
 public class MouseOverObjectScale : MonoBehaviour {
 	public Renderer scaleBridgePart;
 	public Vector3 scaleVector;
+  
+
 	// Use this for initialization
 	void Start () {
 		
@@ -14,14 +16,20 @@ public class MouseOverObjectScale : MonoBehaviour {
 		
 	}
 	void OnMouseEnter(){
+      
 		Scale(true);
+       
+        
 	}
 	void OnMouseExit(){
+       
 		Scale(false);
+     
 	}
 	void Scale(bool on)
 	{
 		float direction;
+         
 		
 		if(on)
 		{
@@ -47,4 +55,9 @@ public class MouseOverObjectScale : MonoBehaviour {
 	{
 		return new Vector3(size,size,size);
 	}
+
+
+
+
+
 }

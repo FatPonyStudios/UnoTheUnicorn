@@ -11,19 +11,24 @@ public class ItemMove : MonoBehaviour {
     private bool drag;
     public GameObject testOfItem;
     private Collider collie;
+    private GameObject player = GameObject.FindWithTag("Uno");
+    
     
 
 	// Use this for initialization
-	void Start () {
-	
+	void Start () 
+    {
+       // player.GetComponent<MoveToClick>().movingAllowed = false;  
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+    {
 	
 	}
     void OnMouseDown()
     {
+       
         originalposition = gameObject.transform.position;
         screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
 
@@ -40,6 +45,7 @@ public class ItemMove : MonoBehaviour {
     }
     void OnMouseUp()
     {
+        
 		if (!PutItemInRightPosition ()) 
 		{
 			gameObject.transform.position = originalposition;
